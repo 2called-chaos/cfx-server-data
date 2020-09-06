@@ -107,20 +107,20 @@ window.APP = {
       this.removeThemes();
 
       this.setThemes(themes);
-      this.showInput = true;
-      this.$nextTick(() => {
-        this.resize();
-        setTimeout(() => {
-          this.resize();
-          this.showInput = false;
-        }, 10)
-      });
+      // this.showInput = true;
+      // this.$nextTick(() => {
+      //   this.resize();
+      //   setTimeout(() => {
+      //     this.resize();
+      //     this.showInput = false;
+      //   }, 10)
+      // });
     },
     removeThemes() {
       for (let i = 0; i < document.styleSheets.length; i++) {
         const styleSheet = document.styleSheets[i];
         const node = styleSheet.ownerNode;
-        
+
         if (node.getAttribute('data-theme')) {
           node.parentNode.removeChild(node);
         }
@@ -152,7 +152,7 @@ window.APP = {
 
           document.head.appendChild(style);
         }
-        
+
         if (data.styleSheet) {
           const link = document.createElement('link');
           link.rel = 'stylesheet';
