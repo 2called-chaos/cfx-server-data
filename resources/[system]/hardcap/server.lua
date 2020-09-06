@@ -12,6 +12,7 @@ end)
 
 AddEventHandler('playerDropped', function()
   if list[source] then
+    print('Dropped: ' .. GetPlayerName(source) .. '^7')
     playerCount = playerCount - 1
     list[source] = nil
   end
