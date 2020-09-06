@@ -62,6 +62,7 @@ window.APP = {
       }
       this.focusTimer = setInterval(() => {
         if (this.$refs.input) {
+          this.$refs.input.resize();
           this.$refs.input.focus();
         } else {
           clearInterval(this.focusTimer);
