@@ -62,7 +62,7 @@ window.APP = {
       }
       this.focusTimer = setInterval(() => {
         if (this.$refs.input) {
-          this.$refs.input.resize();
+          this.resize();
           this.$refs.input.focus();
         } else {
           clearInterval(this.focusTimer);
@@ -107,6 +107,14 @@ window.APP = {
       this.removeThemes();
 
       this.setThemes(themes);
+      this.showInput = true;
+      this.$nextTick(() => {
+        this.resize();
+        setTimeout(() => {
+          this.resize();
+          this.showInput = false;
+        }, 10)
+      });
     },
     removeThemes() {
       for (let i = 0; i < document.styleSheets.length; i++) {
@@ -213,6 +221,7 @@ window.APP = {
         var buf = document.getElementsByClassName('chat-messages')[0];
         buf.scrollTop = buf.scrollTop + 100;
       }
+      this.resize();
     },
     moveOldMessageIndex(up) {
       if (up && this.oldMessages.length > this.oldMessagesIndex + 1) {
@@ -250,10 +259,13 @@ window.APP = {
         post('http://chat/chatResult', JSON.stringify({ canceled }));
       }
       this.message = '';
-      this.showInput = false;
       this.oldMessagesIndex = -1;
       clearInterval(this.focusTimer);
       this.resetShowWindowTimer();
+      this.$nextTick(() => {
+        this.resize();
+        this.showInput = false;
+      });
     },
   },
 };
