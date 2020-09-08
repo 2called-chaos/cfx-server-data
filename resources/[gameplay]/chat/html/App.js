@@ -12,6 +12,7 @@ window.APP = {
       templates: CONFIG.templates,
       message: '',
       messages: [],
+      messageLimit: 1000,
       oldMessages: [],
       oldMessagesIndex: -1,
       tplBackups: [],
@@ -72,6 +73,9 @@ window.APP = {
     ON_MESSAGE({ message }) {
       if(!(message.args.length === 1 && message.args[0] === "")) {
         this.messages.push(message);
+      }
+      while (this.messages.length > this.messageLimit) {
+        this.messages.shift();
       }
     },
     ON_CLEAR() {
