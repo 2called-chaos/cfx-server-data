@@ -70,7 +70,9 @@ window.APP = {
       }, 100);
     },
     ON_MESSAGE({ message }) {
-      this.messages.push(message);
+      if(!(message.args.length === 1 && message.args[0] === "")) {
+        this.messages.push(message);
+      }
     },
     ON_CLEAR() {
       this.messages = [];
