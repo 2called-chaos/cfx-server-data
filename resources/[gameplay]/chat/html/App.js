@@ -113,15 +113,14 @@ window.APP = {
       this.removeThemes();
 
       this.setThemes(themes);
-      const showInputWas = this.showInput;
-      this.showInput = true;
-      this.$nextTick(() => {
-        this.resize();
-        setTimeout(() => {
-          this.resize();
-          this.showInput = showInputWas;
-        }, 10)
-      });
+      // this.showInput = true;
+      // this.$nextTick(() => {
+      //   this.resize();
+      //   setTimeout(() => {
+      //     this.resize();
+      //     this.showInput = false;
+      //   }, 10)
+      // });
     },
     removeThemes() {
       for (let i = 0; i < document.styleSheets.length; i++) {
